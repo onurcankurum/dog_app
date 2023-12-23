@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../mixin/base_view.dart';
 
-class SettingsPage extends StatefulWidget implements BaseView {
+final class SettingsPage extends StatefulWidget implements BaseView {
   const SettingsPage({super.key});
 
   @override
@@ -13,7 +13,7 @@ class SettingsPage extends StatefulWidget implements BaseView {
   NavigationConstant get navigationConstant => NavigationConstant.homePage;
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+final class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

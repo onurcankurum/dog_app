@@ -1,5 +1,4 @@
 import 'package:dog_app/core/theme/i_theme.dart';
-import 'package:dog_app/screens/bottom_navigation_group/home_page/home_page.dart';
 import 'package:flutter/material.dart';
 
 import 'core/navigation/navigation/navigation_constants.dart';

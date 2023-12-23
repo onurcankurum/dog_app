@@ -6,6 +6,7 @@ mixin BaseView on Widget {
 }
 
 mixin BaseStateMixin<T extends StatefulWidget> on State<T> {
+  ThemeData get themeData => Theme.of(context);
   double dynamicHeight(double value) =>
       MediaQuery.of(context).size.height * value;
   double dynamicWidth(double value) =>

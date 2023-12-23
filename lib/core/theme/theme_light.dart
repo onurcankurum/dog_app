@@ -16,20 +16,17 @@ class ThemeLight implements _ITheme {
 
   ThemeData _themeData() {
     return baseThemeData.copyWith(
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: AppColors.bottomNavigationBarBackground,
-      elevation: 0,
-      selectedItemColor: Colors.black,
-      unselectedItemColor: Colors.grey,
-      showUnselectedLabels: true,
-      selectedLabelStyle: const TextStyle(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-      ),
-      unselectedLabelStyle: const TextStyle(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-      ),
-    ));
+        dividerTheme: baseThemeData.dividerTheme.copyWith(
+          color: AppColors.lightGray,
+        ),
+        bottomNavigationBarTheme:
+            baseThemeData.bottomNavigationBarTheme.copyWith(
+          selectedIconTheme: const IconThemeData(
+            color: AppColors.absoluteZero,
+          ),
+          unselectedIconTheme: const IconThemeData(
+            color: Colors.black,
+          ),
+        ));
   }
 }
