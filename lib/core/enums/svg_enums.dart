@@ -3,7 +3,7 @@ enum SvgEnums {
 
   String get path {
     switch (this) {
-      case SvgEnums.bottomNavigationBarBackground:
+      case bottomNavigationBarBackground:
         return 'assets/svg/bottom_navigation_bar_background.svg';
     }
   }
