@@ -1,5 +1,7 @@
+import 'package:dog_app/core/enums/svg_enums.dart';
 import 'package:dog_app/core/navigation/navigation/navigation_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../core/theme/color.dart';
 import '../mixin/base_view.dart';
@@ -32,22 +34,29 @@ class _BottomNavigationGroupPageState extends State<BottomNavigationGroupPage> {
 
   @override
   Widget build(BuildContext context) {
-    var myBottomNavigationBar = BottomNavigationBar(
-      elevation: 12,
-      type: BottomNavigationBarType.fixed,
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.business),
-          label: 'Business',
+    var myBottomNavigationBar = Stack(
+      children: [
+        SvgPicture.asset(SvgEnums.bottomNavigationBarBackground.path,
+            semanticsLabel: 'A red up arrow'),
+        BottomNavigationBar(
+          showSelectedLabels: false,
+          elevation: 0,
+          type: BottomNavigationBarType.fixed,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.business),
+              label: 'Business',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: Colors.amber[800],
+          onTap: _onItemTapped,
         ),
       ],
-      currentIndex: _selectedIndex,
-      selectedItemColor: Colors.amber[800],
-      onTap: _onItemTapped,
     );
     return Scaffold(
       appBar: AppBar(
