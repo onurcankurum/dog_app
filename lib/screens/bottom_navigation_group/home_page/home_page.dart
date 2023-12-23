@@ -1,8 +1,6 @@
 import 'package:dog_app/core/navigation/navigation/navigation_constants.dart';
-import 'package:dog_app/service/breed/dog_service.dart';
 import 'package:flutter/material.dart';
 
-import '../../../repository/dog_repository.dart';
 import '../../mixin/base_view.dart';
 
 final class HomePage extends StatefulWidget implements BaseView {
@@ -25,15 +23,7 @@ final class _HomePageState extends State<HomePage> {
             child: Column(
               children: [
                 GestureDetector(
-                  onTap: () async {
-                    final a = await DogRepository(DogService()).getBreeds();
-                    a.data!.forEach((element) {
-                      print(element.breedName);
-                      element.breedTypes.forEach((element) {
-                        print("onurr breed type" + element);
-                      });
-                    });
-                  },
+                  onTap: () async {},
                   child: Container(
                     height: 233,
                     width: double.infinity,
