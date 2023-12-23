@@ -1,6 +1,9 @@
+import 'package:dog_app/core/enums/png_enums.dart';
 import 'package:dog_app/core/navigation/navigation/navigation_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
+import '../../../core/enums/svg_enums.dart';
 import '../../mixin/base_view.dart';
 
 final class SettingsPage extends StatefulWidget implements BaseView {
@@ -17,20 +20,7 @@ final class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have jhşkhjkhdljd the button this many times:',
-            ),
-            Text(
-              '2',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-    );
+        body: Container(
+            color: Colors.red, child: Image.asset(PngEnums.frame.path)));
   }
 }

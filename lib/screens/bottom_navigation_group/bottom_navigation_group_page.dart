@@ -16,7 +16,8 @@ final class BottomNavigationGroupPage extends StatefulWidget
       _BottomNavigationGroupPageState();
 
   @override
-  NavigationConstant get navigationConstant => throw UnimplementedError();
+  NavigationConstant get navigationConstant =>
+      NavigationConstant.bottomNavigationBarGroupPage;
 }
 
 final class _BottomNavigationGroupPageState
@@ -36,9 +37,6 @@ final class _BottomNavigationGroupPageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('BottomNavigationBar Sample'),
-        ),
         body: Center(
           child: _widgetOptions.elementAt(_selectedIndex),
         ),

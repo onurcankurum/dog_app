@@ -11,7 +11,7 @@ class Client {
     Map<String, dynamic>? headers,
     String? baseUrl,
     Duration? connectTimeout = const Duration(seconds: 20),
-    bool isLogger = false,
+    bool isLogger = true,
   }) async {
     try {
       final testBaseUrl = baseUrl ?? 'https://dog.ceo/api';

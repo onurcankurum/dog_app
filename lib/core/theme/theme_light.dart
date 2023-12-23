@@ -19,6 +19,7 @@ class ThemeLight implements _ITheme {
         dividerTheme: baseThemeData.dividerTheme.copyWith(
           color: AppColors.lightGray,
         ),
+        scaffoldBackgroundColor: Colors.white,
         bottomNavigationBarTheme:
             baseThemeData.bottomNavigationBarTheme.copyWith(
           backgroundColor: Colors.transparent,
