@@ -21,6 +21,7 @@ class ThemeLight implements _ITheme {
         ),
         bottomNavigationBarTheme:
             baseThemeData.bottomNavigationBarTheme.copyWith(
+          backgroundColor: Colors.transparent,
           selectedIconTheme: const IconThemeData(
             color: AppColors.absoluteZero,
           ),

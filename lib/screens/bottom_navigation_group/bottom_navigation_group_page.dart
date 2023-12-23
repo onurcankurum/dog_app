@@ -42,6 +42,8 @@ final class _BottomNavigationGroupPageState
         body: Center(
           child: _widgetOptions.elementAt(_selectedIndex),
         ),
+        resizeToAvoidBottomInset: true,
+        extendBody: false,
         bottomNavigationBar: MyBottomNavigationBar(
           itemsIconsAndTexts: [
             MapEntry(SvgEnums.homeIcon.path, 'Home'),

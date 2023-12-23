@@ -42,43 +42,47 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar>
               fit: BoxFit.fill,
             ),
           ),
-          child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                for (var i = 0; i < widget.itemsIconsAndTexts.length; i++) ...[
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        setState(() {
-                          widget.onIndexChange(i);
-                          currentIndex = i;
-                        });
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: MyBottomNavBarItem(
-                            iconSvgPath: widget.itemsIconsAndTexts[i].key,
-                            title: widget.itemsIconsAndTexts[i].value,
-                            iconColor: currentIndex == i
-                                ? themeData.bottomNavigationBarTheme
-                                    .selectedIconTheme?.color
-                                : themeData.bottomNavigationBarTheme
-                                    .unselectedIconTheme?.color),
+          child: Ink(
+            child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  for (var i = 0;
+                      i < widget.itemsIconsAndTexts.length;
+                      i++) ...[
+                    Expanded(
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            widget.onIndexChange(i);
+                            currentIndex = i;
+                          });
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: MyBottomNavBarItem(
+                              iconSvgPath: widget.itemsIconsAndTexts[i].key,
+                              title: widget.itemsIconsAndTexts[i].value,
+                              iconColor: currentIndex == i
+                                  ? themeData.bottomNavigationBarTheme
+                                      .selectedIconTheme?.color
+                                  : themeData.bottomNavigationBarTheme
+                                      .unselectedIconTheme?.color),
+                        ),
                       ),
                     ),
-                  ),
-                  if (i != widget.itemsIconsAndTexts.length - 1)
-                    Container(
-                      margin: const EdgeInsets.only(top: 24),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(2),
-                          color: themeData.dividerTheme.color),
-                      height: 24,
-                      width: 2,
-                    )
-                ]
-              ]),
+                    if (i != widget.itemsIconsAndTexts.length - 1)
+                      Container(
+                        margin: const EdgeInsets.only(top: 24),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(2),
+                            color: themeData.dividerTheme.color),
+                        height: 24,
+                        width: 2,
+                      )
+                  ]
+                ]),
+          ),
         ),
       ],
     );
