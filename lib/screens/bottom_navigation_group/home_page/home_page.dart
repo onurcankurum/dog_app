@@ -152,7 +152,7 @@ class _ExpandableTextFieldState extends State<_ExpandableTextField>
                   child: TextField(
                     focusNode: _focusNode,
                     minLines: minLines,
-                    maxLines: 5,
+                    maxLines: 99,
                     decoration: InputDecoration(
                       hintText: 'Search',
                       border: OutlineInputBorder(
