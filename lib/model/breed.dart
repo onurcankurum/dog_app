@@ -1,9 +1,9 @@
 final class Breed {
   const Breed({
     required this.breedName,
-    required this.breedTypes,
+    required this.subBreeds,
   });
 
   final String breedName;
-  final List<String> breedTypes;
+  final List<String> subBreeds;
 }

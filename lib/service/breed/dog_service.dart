@@ -39,7 +39,7 @@ final class DogService implements IDogService {
         }
       }
 
-      return Breed(breedName: entry.key, breedTypes: breedTypes);
+      return Breed(breedName: entry.key, subBreeds: breedTypes);
     }).toList();
 
     breedsListModel =
