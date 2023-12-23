@@ -1,6 +1,7 @@
 import 'package:dog_app/core/navigation/navigation/navigation_constants.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/theme/color.dart';
 import '../mixin/base_view.dart';
 import 'home_page/home_page.dart';
 import 'settings_page/settings_page.dart';
@@ -31,6 +32,23 @@ class _BottomNavigationGroupPageState extends State<BottomNavigationGroupPage> {
 
   @override
   Widget build(BuildContext context) {
+    var myBottomNavigationBar = BottomNavigationBar(
+      elevation: 12,
+      type: BottomNavigationBarType.fixed,
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.business),
+          label: 'Business',
+        ),
+      ],
+      currentIndex: _selectedIndex,
+      selectedItemColor: Colors.amber[800],
+      onTap: _onItemTapped,
+    );
     return Scaffold(
       appBar: AppBar(
         title: const Text('BottomNavigationBar Sample'),
@@ -38,22 +56,7 @@ class _BottomNavigationGroupPageState extends State<BottomNavigationGroupPage> {
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
-        onTap: _onItemTapped,
-      ),
+      bottomNavigationBar: myBottomNavigationBar,
     );
   }
 }

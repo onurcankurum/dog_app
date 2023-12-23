@@ -15,6 +15,21 @@ class ThemeLight implements _ITheme {
   ThemeData get themeData => _themeData();
 
   ThemeData _themeData() {
-    return baseThemeData.copyWith();
+    return baseThemeData.copyWith(
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: AppColors.bottomNavigationBarBackground,
+      elevation: 0,
+      selectedItemColor: Colors.black,
+      unselectedItemColor: Colors.grey,
+      showUnselectedLabels: true,
+      selectedLabelStyle: const TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.w600,
+      ),
+      unselectedLabelStyle: const TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.w600,
+      ),
+    ));
   }
 }

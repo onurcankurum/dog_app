@@ -1,3 +1,4 @@
+import 'package:dog_app/core/theme/i_theme.dart';
 import 'package:dog_app/screens/bottom_navigation_group/home_page/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -21,10 +22,7 @@ class MyApp extends StatelessWidget {
       onGenerateTitle: (context) => 'Dog App',
       navigatorKey: NavigationService.navigatorKey,
       routes: NavigationConstant.routes,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: const ThemeLight().themeData,
       home: const BottomNavigationGroupPage(),
     );
   }
