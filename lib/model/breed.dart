@@ -1,9 +1,12 @@
+import 'sub_breed.dart';
+
 final class Breed {
-  const Breed({
+  Breed({
     required this.breedName,
     required this.subBreeds,
   });
 
   final String breedName;
-  final List<String> subBreeds;
+  final List<SubBreed> subBreeds;
+  String? image;
 }

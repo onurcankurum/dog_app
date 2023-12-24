@@ -1,6 +1,8 @@
 import 'package:dog_app/core/navigation/navigation/navigation_constants.dart';
+import 'package:dog_app/repository/dog_repository.dart';
 import 'package:flutter/material.dart';
 
+import '../../../widget/atom/my_breed_category_item.dart';
 import '../../mixin/base_view.dart';
 
 final class HomePage extends StatefulWidget implements BaseView {
@@ -24,16 +26,17 @@ final class _HomePageState extends State<HomePage> {
       body: Stack(
         alignment: Alignment.bottomCenter,
         children: [
-          GridView.count(
-            crossAxisCount: 2,
-            children: List.generate(100, (index) {
-              return Center(
-                child: Text(
-                  'Item $index',
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ),
-              );
-            }),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: GridView.count(
+              crossAxisCount: 2,
+              children:
+                  List.generate(DogRepository.allBreeds!.data!.length, (index) {
+                return MyBreedCategoryItem(
+                    imageUrl: DogRepository.allBreeds!.data![index].image ?? '',
+                    text: DogRepository.allBreeds!.data![index].breedName);
+              }),
+            ),
           ),
           const Positioned(
               bottom: 0, left: 0, right: 0, child: _ExpandableTextField())

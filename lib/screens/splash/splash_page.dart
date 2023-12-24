@@ -28,7 +28,10 @@ class _SplashPageState extends State<SplashPage> {
 
   Future<void> doTasksAndGoHomePage() async {
     try {
-      await Future.wait(tasks);
+      await DogRepository(DogService()).getBreeds();
+      await DogRepository(DogService()).getImageForEachBreed();
+      // ignore: use_build_context_synchronously
+      await DogRepository(DogService()).cacheImageForEachBreed(context);
       NavigationService.instance.pushReplacement(
         baseView: const BottomNavigationGroupPage(),
       );
@@ -37,11 +40,10 @@ class _SplashPageState extends State<SplashPage> {
         baseView: const BottomNavigationGroupPage(),
       );
     }
+    NavigationService.instance.push(
+      baseView: const BottomNavigationGroupPage(),
+    );
   }
-
-  List<Future> tasks = [
-    Future.microtask(() => DogRepository(DogService()).getBreeds())
-  ];
 
   @override
   Widget build(BuildContext context) {

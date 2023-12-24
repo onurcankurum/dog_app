@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dog_app/model/api_wrapper.dart';
+import 'package:flutter/material.dart';
 
 import '../model/breed.dart';
 import '../service/breed/i_dog_service.dart';
@@ -10,6 +12,30 @@ final class DogRepository {
 
   Future<ApiWrapper<List<Breed>>> getBreeds() async {
     if (allBreeds != null) return allBreeds!;
-    return allBreeds = await dogService.getBreedList();
+    allBreeds = await dogService.getBreedList();
+    return allBreeds!;
+  }
+
+  Future<void> getImageForEachBreed() async {
+    if (allBreeds?.data != null) {
+      for (final breed in allBreeds!.data!) {
+        final response = await dogService.getRandomBreedImage(breed.breedName);
+        breed.image = response.data;
+      }
+    }
+  }
+
+  Future<void> cacheImageForEachBreed(BuildContext context) async {
+    if (allBreeds?.data != null) {
+      for (final breed in allBreeds!.data!) {
+        if (breed.image != null) {
+          await precacheImage(
+              CachedNetworkImageProvider(
+                breed.image!,
+              ),
+              context);
+        }
+      }
+    }
   }
 }

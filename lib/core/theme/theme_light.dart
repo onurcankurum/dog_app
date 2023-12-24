@@ -31,4 +31,11 @@ class ThemeLight implements _ITheme {
           ),
         ));
   }
+
+  @override
+  get appExtensionsColors => const MyTheme(
+        breedCategoryItemBorderColor: AppColors.antiFlashWhite,
+        breedCategoryItemTextBackgroundColor: Colors.black26,
+        breedCategoryItemTextColor: Colors.white,
+      );
 }
