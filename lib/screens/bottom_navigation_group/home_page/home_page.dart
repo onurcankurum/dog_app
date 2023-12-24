@@ -35,7 +35,7 @@ final class _HomePageState extends State<HomePage> {
               );
             }),
           ),
-          Positioned(
+          const Positioned(
               bottom: 0, left: 0, right: 0, child: _ExpandableTextField())
         ],
       ),
