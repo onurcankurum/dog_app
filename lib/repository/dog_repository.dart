@@ -38,4 +38,9 @@ final class DogRepository {
       }
     }
   }
+
+  Future<String?> randomImage(String breedName) async {
+    final response = await dogService.getRandomBreedImage(breedName);
+    return response.data;
+  }
 }

@@ -16,12 +16,32 @@ class ThemeLight implements _ITheme {
 
   ThemeData _themeData() {
     return baseThemeData.copyWith(
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor:
+                MaterialStateProperty.resolveWith((states) => AppColors.azure),
+            foregroundColor:
+                MaterialStateProperty.resolveWith((states) => Colors.white),
+            shape: MaterialStateProperty.all<OutlinedBorder>(
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            ),
+            side: MaterialStateProperty.all<BorderSide>(
+              const BorderSide(width: 0, color: Colors.transparent),
+            ),
+          ),
+        ),
         textTheme: TextTheme(
           headlineMedium: baseThemeData.textTheme.headlineMedium?.copyWith(
             color: Colors.black,
             fontSize: 18,
             fontWeight: FontWeight.w600,
             letterSpacing: 0.05,
+          ),
+          titleMedium: baseThemeData.textTheme.titleMedium?.copyWith(
+            color: AppColors.absoluteZero,
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 0.1,
           ),
           bodyMedium: baseThemeData.textTheme.bodyMedium?.copyWith(
             color: AppColors.arsenic,

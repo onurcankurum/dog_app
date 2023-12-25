@@ -7,9 +7,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../model/breed.dart';
 import '../../../widget/atom/my_breed_category_item.dart';
+import '../../../widget/mixin/open_dialog.dart';
+import '../../../widget/molecul/breed_detail_dialog_widget.dart';
 import '../../mixin/base_view.dart';
 
-final class HomePage extends StatefulWidget implements BaseView {
+final class HomePage extends StatefulWidget
+    with OpenDialog
+    implements BaseView {
   const HomePage({super.key});
 
   @override
@@ -51,8 +55,23 @@ final class _HomePageState extends State<HomePage> with BaseStateMixin {
                     crossAxisCount: 2,
                     children: List.generate(state.length, (index) {
                       return MyBreedCategoryItem(
-                          imageUrl: state[index].image ?? '',
-                          text: state[index].breedName);
+                        imageUrl: state[index].image ?? '',
+                        text: state[index].breedName,
+                        onTap: () {
+                          widget.showMyDialog(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
+                              child: BreedDetailDialogWidget(
+                                subBreedNames: state[index]
+                                    .subBreeds
+                                    .map((e) => e.subBreedName)
+                                    .toList(),
+                                breedName: state[index].breedName,
+                                imageUrl: state[index].image ?? '',
+                              ),
+                              capturePageContext: () => context);
+                        },
+                      );
                     }),
                   );
                 }),
@@ -72,9 +91,7 @@ final class _HomePageState extends State<HomePage> with BaseStateMixin {
 }
 
 class _NoResultFoundWidget extends StatelessWidget {
-  const _NoResultFoundWidget({
-    super.key,
-  });
+  const _NoResultFoundWidget();
 
   @override
   Widget build(BuildContext context) {

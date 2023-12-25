@@ -57,7 +57,7 @@ final class _SettingsPageState extends State<SettingsPage> {
             width: 32,
           ),
           trailing: SvgPicture.asset(
-            SvgEnums.starIcon.path,
+            SvgEnums.arrowRightUpIcon.path,
             height: 16,
             width: 16,
           ),
