@@ -28,16 +28,31 @@ class MyBreedCategoryItem extends StatelessWidget {
                 ),
                 image: DecorationImage(
                   image: imageProvider,
-                  fit: BoxFit.fitWidth,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
-            placeholder: (context, url) => const Center(
-              child: SizedBox(
-                  height: 30, width: 30, child: CircularProgressIndicator()),
+            placeholder: (context, url) => Container(
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(
+                  color: context.myTheme.breedCategoryItemBorderColor,
+                  width: 1,
+                ),
+              ),
             ),
             errorWidget: (context, url, error) {
-              return const Center(child: Icon(Icons.error));
+              return Container(
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(
+                      color: context.myTheme.breedCategoryItemBorderColor,
+                      width: 1,
+                    ),
+                  ),
+                  child: const Icon(Icons.error));
             },
           ),
           Positioned(

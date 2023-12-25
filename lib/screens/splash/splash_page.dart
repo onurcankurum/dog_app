@@ -22,11 +22,11 @@ final class SplashPage extends StatefulWidget with BaseView {
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
-    doTasksAndGoHomePage();
+    _doTasksAndGoHomePage();
     super.initState();
   }
 
-  Future<void> doTasksAndGoHomePage() async {
+  Future<void> _doTasksAndGoHomePage() async {
     try {
       await DogRepository(DogService()).getBreeds();
       await DogRepository(DogService()).getImageForEachBreed();
@@ -36,11 +36,11 @@ class _SplashPageState extends State<SplashPage> {
         baseView: const BottomNavigationGroupPage(),
       );
     } catch (e) {
-      NavigationService.instance.push(
+      NavigationService.instance.pushReplacement(
         baseView: const BottomNavigationGroupPage(),
       );
     }
-    NavigationService.instance.push(
+    NavigationService.instance.pushReplacement(
       baseView: const BottomNavigationGroupPage(),
     );
   }

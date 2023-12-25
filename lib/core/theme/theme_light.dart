@@ -16,6 +16,28 @@ class ThemeLight implements _ITheme {
 
   ThemeData _themeData() {
     return baseThemeData.copyWith(
+        textTheme: TextTheme(
+          headlineMedium: baseThemeData.textTheme.headlineMedium?.copyWith(
+            color: Colors.black,
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 0.05,
+          ),
+          bodyMedium: baseThemeData.textTheme.bodyMedium?.copyWith(
+            color: AppColors.arsenic,
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+            letterSpacing: 0.1,
+          ),
+        ),
+        inputDecorationTheme: baseThemeData.inputDecorationTheme.copyWith(
+          hintStyle: baseThemeData.inputDecorationTheme.hintStyle?.copyWith(
+            color: AppColors.rifleGreeb,
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+            letterSpacing: 0.1,
+          ),
+        ),
         dividerTheme: baseThemeData.dividerTheme.copyWith(
           color: AppColors.lightGray,
         ),
@@ -34,6 +56,7 @@ class ThemeLight implements _ITheme {
 
   @override
   get appExtensionsColors => const MyTheme(
+        settingListTileDividerColor: AppColors.platinum,
         breedCategoryItemBorderColor: AppColors.antiFlashWhite,
         breedCategoryItemTextBackgroundColor: Colors.black26,
         breedCategoryItemTextColor: Colors.white,

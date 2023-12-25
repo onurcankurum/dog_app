@@ -1,7 +1,11 @@
+import 'package:dog_app/bloc/breed_filter_bloc.dart';
+import 'package:dog_app/core/extension/theme_extension.dart';
 import 'package:dog_app/core/navigation/navigation/navigation_constants.dart';
 import 'package:dog_app/repository/dog_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../model/breed.dart';
 import '../../../widget/atom/my_breed_category_item.dart';
 import '../../mixin/base_view.dart';
 
@@ -15,7 +19,15 @@ final class HomePage extends StatefulWidget implements BaseView {
   NavigationConstant get navigationConstant => NavigationConstant.homePage;
 }
 
-final class _HomePageState extends State<HomePage> {
+final class _HomePageState extends State<HomePage> with BaseStateMixin {
+  late final BreedFilterBloc _breedFilterBloc;
+  @override
+  void initState() {
+    _breedFilterBloc =
+        BreedFilterBloc(allBreeds: DogRepository.allBreeds?.data ?? []);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,18 +40,56 @@ final class _HomePageState extends State<HomePage> {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: GridView.count(
-              crossAxisCount: 2,
-              children:
-                  List.generate(DogRepository.allBreeds!.data!.length, (index) {
-                return MyBreedCategoryItem(
-                    imageUrl: DogRepository.allBreeds!.data![index].image ?? '',
-                    text: DogRepository.allBreeds!.data![index].breedName);
-              }),
-            ),
+            child: BlocBuilder<BreedFilterBloc, List<Breed>>(
+                bloc: _breedFilterBloc,
+                builder: (context, state) {
+                  if (state.isEmpty) {
+                    return const _NoResultFoundWidget();
+                  }
+                  return GridView.count(
+                    padding: const EdgeInsets.only(bottom: 100),
+                    crossAxisCount: 2,
+                    children: List.generate(state.length, (index) {
+                      return MyBreedCategoryItem(
+                          imageUrl: state[index].image ?? '',
+                          text: state[index].breedName);
+                    }),
+                  );
+                }),
           ),
-          const Positioned(
-              bottom: 0, left: 0, right: 0, child: _ExpandableTextField())
+          Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: _ExpandableTextField(
+                onChanged: (value) =>
+                    _breedFilterBloc.add(FilterEvent(filterText: value)),
+              ))
+        ],
+      ),
+    );
+  }
+}
+
+class _NoResultFoundWidget extends StatelessWidget {
+  const _NoResultFoundWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'No results found',
+            style: context.themeData.textTheme.headlineMedium,
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          const Text('Try searching with another word')
         ],
       ),
     );
@@ -47,15 +97,16 @@ final class _HomePageState extends State<HomePage> {
 }
 
 final class _ExpandableTextField extends StatefulWidget {
-  const _ExpandableTextField();
-
+  const _ExpandableTextField({
+    required this.onChanged,
+  });
+  final Function(String) onChanged;
   @override
   State<_ExpandableTextField> createState() => _ExpandableTextFieldState();
 }
 
 class _ExpandableTextFieldState extends State<_ExpandableTextField>
     with BaseStateMixin {
-  final TextEditingController _textEditingController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
   int minLines = 1;
   bool _isExpanded = false;
@@ -132,7 +183,9 @@ class _ExpandableTextFieldState extends State<_ExpandableTextField>
               ),
               width: double.infinity,
               child: TextField(
+                onChanged: widget.onChanged,
                 focusNode: _focusNode,
+                style: context.themeData.textTheme.headlineMedium,
                 minLines: minLines,
                 maxLines: 99,
                 decoration: InputDecoration(
