@@ -17,11 +17,20 @@ final class DogRepository {
   }
 
   Future<void> getImageForEachBreed() async {
+    List<Future<ApiWrapper<String>>> tasks = [];
     if (allBreeds?.data != null) {
       for (final breed in allBreeds!.data!) {
-        final response = await dogService.getRandomBreedImage(breed.breedName);
-        breed.image = response.data;
+        tasks.add(dogService.getRandomBreedImage(breed.breedName).then((value) {
+          breed.image = value.data ?? '';
+          return value;
+        }));
       }
+    }
+    final responses = await Future.wait(tasks);
+    for (final url in responses) {
+      allBreeds!.data!
+          .firstWhere((element) => element.breedName == url.data)
+          .image = url.data;
     }
   }
 
