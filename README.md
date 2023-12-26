@@ -2,7 +2,7 @@
 
 Bu, Flutter kullanılarak geliştirilen Dog App adlı basit bir mobil uygulamadır.
 
-## Kurulum ve Çalıştırma
+v
 
 Proje dizininde çalıştırın:
 
@@ -10,3 +10,5 @@ Proje dizininde çalıştırın:
 flutter pub get
 flutter run
 ```
+
+## Resimlerin Parelel Çekilmesi Son Commit İle Sağlandı
