@@ -1,6 +1,6 @@
 # Dog App
 
-Bu, Flutter kullanılarak geliştirilen Dog App adlı basit bir mobil uygulamadır.
+Bu, Flutter kullanılarak geliştirilen Dog App adlıs bir mobil uygulamadır.
 
 v
 
