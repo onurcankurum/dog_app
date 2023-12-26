@@ -138,11 +138,9 @@ final class _SettingsPageState extends State<SettingsPage> {
           ),
           trailing: Container(
             alignment: Alignment.centerRight,
-            child: Flexible(
-              child: Text(
-                DeviceInfo.getOsVersion(),
-                overflow: TextOverflow.ellipsis,
-              ),
+            child: Text(
+              DeviceInfo.getOsVersion(),
+              overflow: TextOverflow.ellipsis,
             ),
           ),
           title: Text(

@@ -106,10 +106,7 @@ final class BreedDetailDialogWidget extends StatelessWidget with OpenDialog {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        imageWidget(
-            'https://images.dog.ceo/breeds/australian-shepherd/pepper.jpg',
-            256,
-            const BorderRadius.all(Radius.circular(12))),
+        imageWidget(url, 256, const BorderRadius.all(Radius.circular(12))),
         const SizedBox(
           height: 16,
         ),

@@ -29,9 +29,9 @@ class _SplashPageState extends State<SplashPage> {
   Future<void> _doTasksAndGoHomePage() async {
     try {
       await DogRepository(DogService()).getBreeds();
-      //await DogRepository(DogService()).getImageForEachBreed();
+      await DogRepository(DogService()).getImageForEachBreed();
       // ignore: use_build_context_synchronously
-      //await DogRepository(DogService()).cacheImageForEachBreed(context);
+      await DogRepository(DogService()).cacheImageForEachBreed(context);
       NavigationService.instance.pushReplacement(
         baseView: const BottomNavigationGroupPage(),
       );

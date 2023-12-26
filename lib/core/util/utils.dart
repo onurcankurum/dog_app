@@ -5,7 +5,6 @@ final class DeviceInfo {
     final String os = Platform.operatingSystem;
     List<String?> versionProperties =
         Platform.operatingSystemVersion.split(' ');
-
     if (Platform.isAndroid) {
       if (versionProperties.length > 1) {
         return '$os ${Platform.operatingSystemVersion.split(' ')[1]}';
